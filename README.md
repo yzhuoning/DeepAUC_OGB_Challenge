@@ -7,8 +7,10 @@ Here, we demonstrate the following performance on the ogbg-molhiv dataset from S
 
 | Model              |Test AUCROC    |Validation AUCROC  | Parameters    | Hardware |
 | ------------------ |-------------------   | ----------------- | -------------- |----------|
-|  DeepAUC   | 0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
-|  DeepAUC+RFs   | 0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
+| DeepGCN            |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
+| Random Forest      |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
+| DeepAUC            |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
+| DeepAUC+RFs        |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
 
 
 ### Requirements

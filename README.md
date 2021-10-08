@@ -9,8 +9,8 @@ Here, we demonstrate the following performance on the ogbg-molhiv dataset from S
 | ------------------ |-------------------   | ----------------- | -------------- |----------|
 | DeepGCN            |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
 | Random Forest      |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
-| Graphmer           |
-| DeepAUC             |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
+| Graphormer         |
+| DeepAUC            |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
 | DeepAUC+RFs        |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
 
 

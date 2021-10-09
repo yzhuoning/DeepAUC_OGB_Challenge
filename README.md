@@ -24,6 +24,7 @@ We present our results on the ogbg-molhiv dataset from Stanford Open Graph Bench
     dgl>=0.5.3 
     numpy==1.20.3
     pandas==1.2.5
+    scikit-learn==0.24.2
     ```   
 2. Install [**LibAUC**](https://github.com/Optimization-AI/LibAUC) for using our loss and optimizer:
     ```bash

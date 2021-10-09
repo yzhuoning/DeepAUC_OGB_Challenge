@@ -1,5 +1,5 @@
 # Deep AUC Maximization on Graph Property Prediction
-This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin loss**](https://arxiv.org/pdf/2012.03173.pdf) improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8351** when jointly training with Neural FingerPrints. Our Library **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)** is used for experiments. 
+This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin loss**](https://arxiv.org/pdf/2012.03173.pdf) improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8351** when jointly training with Neural FingerPrints. Our approaches are included in **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)**, which is a ML library for AUC optimization.
 
 ## Results on ogbg-molhiv
 We present our results on the ogbg-molhiv dataset from Stanford Open Graph Benchmark (1.3.2) with some strong baselines. 
@@ -25,15 +25,14 @@ We present our results on the ogbg-molhiv dataset from Stanford Open Graph Bench
     numpy==1.20.3
     pandas==1.2.5
     ```   
-2. Install [**LibAUC**](https://github.com/Optimization-AI/LibAUC) for our loss and optimizer:
+2. Install [**LibAUC**](https://github.com/Optimization-AI/LibAUC) for using our loss and optimizer:
     ```bash
     pip install LibAUC
     ```
     
 ## Training
-The training process has two stages: 1) We train a DeepGCN model using our **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** from scratch. 2) We jointly finetuning the pretrained model from (1) with **FingerPrints** models. The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~3% improvement. The result (2) achieves a higher SOTA performance from **0.8351**, which is ~1% improvement over previous baseline. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
-
-### Training DeepGCN from scratch using **[LibAUC](https://github.com/Optimization-AI/LibAUC)**:
+The training process has two steps: 1) We train a DeepGCN model using our **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** from scratch. 2) We jointly finetuning the pretrained model from (1) with **FingerPrints** models. 
+### Training DeepGCN from scratch using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)**:
 ```
 python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block res+ --gcn_aggr softmax_sg --t 1.0 --learn_t --dropout 0.2 --loss auroc \
             --dataset ogbg-molhiv \
@@ -67,6 +66,9 @@ python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block
             --epochs 100
 ```
 
+## Results
+The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance from **0.8351**, which is ~**1%** improvement over previous baseline. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
+
 Citation
 ---------
 If you find this work useful, please cite the following paper for our library:
@@ -85,4 +87,4 @@ Reference
 - https://github.com/PaddlePaddle/PaddleHelix/tree/dev/competition/ogbg_molhiv
 - https://github.com/lightaime/deep_gcns_torch/
 - https://ogb.stanford.edu/
-``
+

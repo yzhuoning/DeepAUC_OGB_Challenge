@@ -4,7 +4,7 @@ This repo contains the implementation of our AUC optimization method on [ogb-mol
 ## Results on ogbg-molhiv
 Here, we show the performance on the ogbg-molhiv dataset from Stanford Open Graph Benchmark (1.3.2). 
 
-| Model              |Test AUCROC    |Validation AUCROC  | Parameters    | Hardware |
+| Model              |Test AUROC    |Validation AUROC  | Parameters    | Hardware |
 | ------------------ |------------------- | ----------------- | -------------- |----------|
 | DeepGCN            | 0.7858 ± 0.0117 | 0.8427 ± 0.0063 | 531,976   | Tesla V100 (32GB) |
 | Neural FingerPrints| 0.8232 ± 0.0047 | 0.8331 ± 0.0054 | 2,425,102 | Tesla V100 (32GB) |
@@ -32,25 +32,37 @@ Here, we show the performance on the ogbg-molhiv dataset from Stanford Open Grap
     ```
     
 ### Training
+The training process contains two steps: 1) We train a [DeepGCN]() model using our **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** from scratch. 2) We jointly finetuning the pretrained model from (1) with [FingerPrints]() models.  The results from (1) improves the original baseline from **0.7858 to 0.8155**, which is ~3% improvement. The result (2) improves the SOTA from 0.8244 to 0.8351, which is ~1% improvement. 
 
-1. Random Forest with FingerPrints
+1. Training DeepGCN from scratch using **[LibAUC](https://github.com/Optimization-AI/LibAUC)**:
+```
+python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block res+ --gcn_aggr softmax_sg --t 1.0 --learn_t --dropout 0.2 --loss auroc \
+            --dataset $DATA \
+            --batch_size 512 \
+	    --lr 0.1 \
+            --optimizer pesg \
+            --gamma 500 \
+            --margin 1.0 \
+            --weight_decay 1e-5 \
+            --random_seed 0 \
+            --epochs 300
+```
 
-First 
-
-First, you should generate fingerprints and train with random forest as mentioned in 《Extended-Connectivity Fingerprints》 and 《GMAN and bag of tricks for graph classification》.
-
+2. Jointly traininig with FingerPrints Model
 ```
 python extract_fingerprint.py
 python random_forest.py
+python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block res+ --gcn_aggr softmax_sg --t 1.0 --learn_t --dropout 0.2 --loss auroc \
+            --dataset $DATA \
+            --batch_size 512 \
+	    --lr 0.01 \
+            --optimizer pesg \
+            --gamma 500 \
+            --margin 1.0 \
+            --weight_decay 1e-5 \
+            --random_seed 0 \
+            --epochs 100
 ```
-The prediction results will be saved in ../../rf_preds_hiv/rf_final_pred.npy.
-
-
-2. Train model using LibAUC
-
-
-3. Jointly train with Neural Fingers
-
 
 Citation
 ---------

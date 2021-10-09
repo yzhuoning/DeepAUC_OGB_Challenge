@@ -1,33 +1,32 @@
 # Deep AUC Maximization on OGB-Molhiv Dataset
-This repo is our implementation for reproducing the our result in leaderboard. 
-
+This repo contains the implementation of our AUC optimization method on [ogb-molhiv](https://ogb.stanford.edu/docs/leader_graphprop/). Our AUC optimizatin improves original baseline (DeepGCN) from 0.7858 to 0.81555 and achieves SOTA performance, **0.8351**, jointly training with Neural FingerPrints.
 
 ## Results on ogbg-molhiv
-Here, we demonstrate the following performance on the ogbg-molhiv dataset from Stanford Open Graph Benchmark (1.3.0)
+Here, we show the performance on the ogbg-molhiv dataset from Stanford Open Graph Benchmark (1.3.2). 
 
 | Model              |Test AUCROC    |Validation AUCROC  | Parameters    | Hardware |
 | ------------------ |------------------- | ----------------- | -------------- |----------|
 | DeepGCN            | 0.7858 ± 0.0117 | 0.8427 ± 0.0063 | 531,976   | Tesla V100 (32GB) |
 | Neural FingerPrints| 0.8232 ± 0.0047 | 0.8331 ± 0.0054 | 2,425,102 | Tesla V100 (32GB) |
 | Graphormer         | 0.8051 ± 0.0053 | 0.8310 ± 0.0089 | 47,183,04 | Tesla V100 (16GB) |
-| DeepAUC            | 0.8155 ± 0.xxxx | 0.8064 ± 0.xxxx | 101,011   | Tesla V100 (32GB) |
-| DeepAUC + NFP      | 0.8351 ± 0.xxxx | 0.8236 ± 0.xxxx | 101,011   | Tesla V100 (32GB) |
+| **DeepAUC (Ours)**           | 0.8155±0.0057 | 0.8064±0.0072 | 101,011   | Tesla V100 (32GB) |
+| **DeepAUC+NFP (Ours)**     | **0.8351±0.0048** | 0.8236±0.0055 | 101,011   | Tesla V100 (32GB) |
 
-	
-		 Valid_AUC:0.806406, Test_AUC:0.815520
 
 ### Requirements
 
 1. Install base packages:
     ```bash
-    pip install tensorflow>=2.0.0         
-    pip install pytorch > 1.8.0     
+    Python>=3.7
+    Pytorch>=1.9.0
+    tensorflow>=2.0.0
+    pytorch_geometric>=1.6.0
+    ogb>=1.3.2 
+    dgl>=0.5.3 
+    numpy
+    pandas
     ```   
-2. Install `ogb` for datasets, evaluation:
-    ```bash
-    pip install ogb
-    ```
-3. Install `LibAUC` for training, optimization :
+2. Install our **`LibAUC`** for training, optimization :
     ```bash
     pip install LibAUC
     ```

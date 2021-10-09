@@ -7,14 +7,14 @@ Here, we demonstrate the following performance on the ogbg-molhiv dataset from S
 
 | Model              |Test AUCROC    |Validation AUCROC  | Parameters    | Hardware |
 | ------------------ |------------------- | ----------------- | -------------- |----------|
-| DeepGCN            | 0.7858 ± 0.0117  | 0.8427 ± 0.0063 | 531,976 | Tesla V100 (32GB) |
-| Neural FingerPrints| 0.8232 ± 0.0047   | 0.8331 ± 0.0054 | 2,425,102 | Tesla V100 (32GB) |
+| DeepGCN            | 0.7858 ± 0.0117 | 0.8427 ± 0.0063 | 531,976   | Tesla V100 (32GB) |
+| Neural FingerPrints| 0.8232 ± 0.0047 | 0.8331 ± 0.0054 | 2,425,102 | Tesla V100 (32GB) |
 | Graphormer         | 0.8051 ± 0.0053 | 0.8310 ± 0.0089 | 47,183,04 | Tesla V100 (16GB) |
-| DeepAUC            |     0.xxxx ± 0.xxxx | 0.xxxx ± 0.xxxx | 101,011| Tesla V100 (32GB) |
-| DeepAUC+RFs        |     0.8351 ± 0.xxxx | 0.8236 ± 0.xxxx | 101,011| Tesla V100 (32GB) |
+| DeepAUC            | 0.8155 ± 0.xxxx | 0.8064 ± 0.xxxx | 101,011   | Tesla V100 (32GB) |
+| DeepAUC + NFP      | 0.8351 ± 0.xxxx | 0.8236 ± 0.xxxx | 101,011   | Tesla V100 (32GB) |
 
 	
-		
+		 Valid_AUC:0.806406, Test_AUC:0.815520
 
 ### Requirements
 

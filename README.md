@@ -1,4 +1,4 @@
-# Deep AUC Maximization on OGB-Molhiv Dataset
+# Deep AUC Maximization on Graph Property Prediction
 This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin loss**](https://arxiv.org/pdf/2012.03173.pdf) improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8351** when jointly training with Neural FingerPrints. Our Library **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)** is used for experiments. 
 
 ## Results on ogbg-molhiv

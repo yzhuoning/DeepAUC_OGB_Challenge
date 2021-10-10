@@ -1,16 +1,16 @@
 # Deep AUC Maximization on Graph Property Prediction
-This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin loss**](https://arxiv.org/pdf/2012.03173.pdf) improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8351** when jointly training with Neural FingerPrints. Our approaches are included in **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)**, which is a ML library for AUC optimization.
+This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin**](https://arxiv.org/abs/2012.03173) loss improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8351** when jointly training with Neural FingerPrints. Our approaches are implemented in **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)**, which is a ML library for AUC optimization.
 
 ## Results on ogbg-molhiv
-We present our results on the ogbg-molhiv dataset from Stanford Open Graph Benchmark (1.3.2) with some strong baselines. 
+We present our results on the ogbg-molhiv dataset with some strong baselines. 
 
 | Method             |Test AUROC    |Validation AUROC  | Parameters    | Hardware |
 | ------------------ |------------------- | ----------------- | -------------- |----------|
 | DeepGCN            | 0.7858±0.0117 | 0.8427±0.0063 | 531,976   | Tesla V100 (32GB) |
 | Neural FingerPrints| 0.8232±0.0047 | 0.8331±0.0054 | 2,425,102 | Tesla V100 (32GB) |
 | Graphormer         | 0.8051±0.0053 | 0.8310±0.0089 | 47,183,04 | Tesla V100 (16GB) |
-| **DeepAUC (Ours)**           | 0.8155±0.0057 | 0.8064±0.0072 | ???  | Tesla V100 (32GB) |
-| **DeepAUC+FPs (Ours)**     | **0.8351±0.0048** | 0.8236±0.0055 | ???   | Tesla V100 (32GB) |
+| **DeepAUC (Ours)**           | 0.8155±0.0057 | 0.8064±0.0072 | 1,019,407  | Tesla V100 (32GB) |
+| **DeepAUC+FPs (Ours)**     | **0.8351±0.0048** | 0.8236±0.0055 | 3,444,509   | Tesla V100 (32GB) |
 
 
 ## Requirements
@@ -26,20 +26,22 @@ We present our results on the ogbg-molhiv dataset from Stanford Open Graph Bench
     pandas==1.2.5
     scikit-learn==0.24.2
     ```   
-2. Install [**LibAUC**](https://github.com/Optimization-AI/LibAUC) for using our loss and optimizer:
+2. Install [**LibAUC**](https://github.com/Optimization-AI/LibAUC) (using **AUC-Margin** loss and **PESG** optimizer):
     ```bash
     pip install LibAUC
     ```
     
 ## Training
-The training process has two steps: 1) We train a DeepGCN model using our **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** from scratch. 2) We jointly finetuning the pretrained model from (1) with **FingerPrints** models. 
-### Training DeepGCN from scratch using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)**:
+The training process has two steps: 1) we train a DeepGCN model using our **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** from scratch. 2) we jointly finetuning the pretrained model from (1) with FingerPrints models. 
+### Training from scratch using AUC-margin loss:
+- Train [DeepGCN](https://github.com/lightaime/deep_gcns_torch) model with AUC-Margin loss and PESG optimizer
 ```
-python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block res+ --gcn_aggr softmax_sg --t 1.0 --learn_t --dropout 0.2 --loss auroc \
+python main_auc.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
             --dataset ogbg-molhiv \
+	    --loss auroc \
+            --optimizer pesg \
             --batch_size 512 \
 	    --lr 0.1 \
-            --optimizer pesg \
             --gamma 500 \
             --margin 1.0 \
             --weight_decay 1e-5 \
@@ -48,19 +50,20 @@ python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block
 ```
 
 ### Jointly traininig with FingerPrints Model
-Extract fingerprints and train Random Forest by following [PaddleHelix](https://github.com/PaddlePaddle/PaddleHelix/tree/dev/competition/ogbg_molhiv)
+- Extract fingerprints and train Random Forest by following [PaddleHelix](https://github.com/PaddlePaddle/PaddleHelix/tree/dev/competition/ogbg_molhiv)
 ```
 python extract_fingerprint.py
 python random_forest.py
 ```
-Finetuning Our pretrained model with FingerPrints Models using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)**
+- Finetuning pretrained model with FingerPrints model using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)**
 ```
-python main_auc.py --use_gpu --conv_encode_edge --num_layers $NUM_LAYERS --block res+ --gcn_aggr softmax_sg --t 1.0 --learn_t --dropout 0.2 --loss auroc \
+python main_auc.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
             --dataset ogbg-molhiv \
+	    --loss auroc \
+	    --optimizer pesg \
             --batch_size 512 \
 	    --lr 0.01 \
-            --optimizer pesg \
-            --gamma 500 \
+            --gamma 300 \
             --margin 1.0 \
             --weight_decay 1e-5 \
             --random_seed 0 \
@@ -72,7 +75,7 @@ The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155
 
 Citation
 ---------
-If you find this work useful, please cite the following paper for our library:
+If you find this work useful, please cite the following paper for our method:
 ```
 @inproceedings{yuan2021robust,
 	title={Large-scale Robust Deep AUC Maximization: A New Surrogate Loss and Empirical Studies on Medical Image Classification},
@@ -84,6 +87,7 @@ If you find this work useful, please cite the following paper for our library:
 
 Reference 
 ---------
+- https://libauc.org/
 - https://github.com/Optimization-AI/LibAUC
 - https://github.com/PaddlePaddle/PaddleHelix/tree/dev/competition/ogbg_molhiv
 - https://github.com/lightaime/deep_gcns_torch/

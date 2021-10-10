@@ -1,5 +1,5 @@
 # Deep AUC Maximization on Graph Property Prediction
-This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin**](https://arxiv.org/abs/2012.03173) loss improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8351** when jointly training with Neural FingerPrints. Our approaches are implemented in **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)**, which is a ML library for AUC optimization.
+This repo contains code for OGB submission. Here, we focus on [**ogb-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin**](https://arxiv.org/abs/2012.03173) loss improves baseline (DeepGCN) to **0.8155** and achieves SOTA performance **0.8352** when jointly training with Neural FingerPrints. Our approaches are implemented in **[LibAUC](https://github.com/Optimization-AI/ICCV2021_DeepAUC)**, which is a ML library for AUC optimization.
 
 ## Results on ogbg-molhiv
 We present our results on the ogbg-molhiv dataset with some strong baselines. 
@@ -70,7 +70,7 @@ python finetune.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --g
 ```
 
 ## Results
-The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance **0.8351**, which is ~**1%** improvement over previous baselines. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
+The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance **0.8352**, which is ~**1%** improvement over previous baselines. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
 
 Citation
 ---------

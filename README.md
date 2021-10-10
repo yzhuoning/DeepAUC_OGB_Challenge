@@ -70,7 +70,7 @@ python finetune.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --g
 ```
 
 ## Results
-The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance **0.8352**, which is ~**1%** improvement over previous baselines. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
+The results (1) improves the original baseline (DeepGCN) from **0.8159**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance **0.8352**, which is ~**1%** improvement over previous baselines. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
 
 Citation
 ---------

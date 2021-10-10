@@ -10,7 +10,7 @@ We present our results on the ogbg-molhiv dataset with some strong baselines.
 | Neural FingerPrints| 0.8232±0.0047 | 0.8331±0.0054 | 2,425,102 | Tesla V100 (32GB) |
 | Graphormer         | 0.8051±0.0053 | 0.8310±0.0089 | 47,183,04 | Tesla V100 (16GB) |
 | **DeepAUC (Ours)**           | 0.8155±0.0057 | 0.8064±0.0072 | 1,019,407  | Tesla V100 (32GB) |
-| **DeepAUC+FPs (Ours)**     | **0.8351±0.0048** | 0.8236±0.0055 | 3,444,509   | Tesla V100 (32GB) |
+| **DeepAUC+FPs (Ours)**     | **0.8351±0.0048** | 0.8236±0.0055 | 1,019,407  | Tesla V100 (32GB) |
 
 
 ## Requirements
@@ -71,7 +71,7 @@ python main_auc.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --g
 ```
 
 ## Results
-The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance from **0.8351**, which is ~**1%** improvement over previous baseline. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
+The results (1) improves the original baseline (DeepGCN) from **0.7858 to 0.8155**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance **0.8351**, which is ~**1%** improvement over previous baselines. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
 
 Citation
 ---------

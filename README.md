@@ -36,7 +36,7 @@ The training process has two steps: 1) we train a DeepGCN model using our **[AUC
 ### Training from scratch using AUC-margin loss:
 - Train [DeepGCN](https://github.com/lightaime/deep_gcns_torch) model with AUC-Margin loss and PESG optimizer
 ```
-python main_auc.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
+python main.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
             --dataset ogbg-molhiv \
 	    --loss auroc \
             --optimizer pesg \
@@ -57,7 +57,7 @@ python random_forest.py
 ```
 - Finetuning pretrained model with FingerPrints model using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)**
 ```
-python main_auc.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
+python finetune.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
             --dataset ogbg-molhiv \
 	    --loss auroc \
 	    --optimizer pesg \

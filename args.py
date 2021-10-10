@@ -116,7 +116,6 @@ class ArgsInit(object):
                                           self.args.msg_norm, self.args.learn_msg_scale, 
                                           self.args.random_seed)
 
-#        self.args.save_dir = './saved_models/{}-{}'.format(self.args.save, time.strftime("%Y%m%d-%H%M%S")) #, str(uuid.uuid4()))
         self.args.save_dir = './saved_models/{}'.format(self.args.save) #, time.strftime("%Y%m%d-%H%M%S")) #, str(uuid.uuid4()))
         self.args.model_save_path = os.path.join(self.args.save_dir, self.args.model_save_path)
         

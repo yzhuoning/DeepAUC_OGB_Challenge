@@ -138,25 +138,12 @@ def main():
     print (aucm_criterion.p)
 
     # save 
-    SAVE_LOG_PATH = './logs/' #+args.save 
-    create_exp_dir(SAVE_LOG_PATH)
     datetime_now = '2021-10-09'
     pretrained_prefix = 'pre_' if args.pretrained else ''
     virtual_node_prefilx = '-vt' if args.add_virtual_node else ''
     args.configs = '[%s]Train_%s_im_%.4f_rd_%s_%s%s_%s_%s_wd_%s_lr_%s_B_%s_E_%s_%s_%s_g_%s_m_%s'%(datetime_now, args.dataset, args.imratio,  args.random_seed, pretrained_prefix, args.model_name, virtual_node_prefilx, args.activations, args.weight_decay, args.lr, args.batch_size, args.epochs,  args.loss, args.optimizer, args.gamma, args.margin)
     logging.info(args.save)  
     logging.info(args.configs)      
-    
-    
-    # check if model is already trained 
-    if os.path.isfile(SAVE_LOG_PATH + '/%s.csv'%(args.configs)):
-        df = pd.read_csv(SAVE_LOG_PATH + '/%s.csv'%(args.configs))
-        if df.shape[0] == args.epochs:
-           print ('skip training...')
-           return 
-       
-    train_loss_list, train_auc_list, val_auc_list, test_auc_list, lr_list = [],[],[],[], []
-    a_list, b_list, alpha_list = [],[],[]
     
     results = {'highest_valid': 0,
                'final_train': 0,
@@ -180,21 +167,7 @@ def main():
         logging.info("Epoch:%s, train_auc:%.4f, valid_auc:%.4f, test_auc:%.4f, lr:%.4f, time:%.4f"%(epoch, train_result, valid_result, test_result, optimizer.lr, time.time()-start_time_local))
         start_time_local = time.time()
         # model.print_params(epoch=epoch)
-
-        # save to log
-        train_loss_list.append(epoch_loss)
-        train_auc_list.append(train_result)
-        val_auc_list.append(valid_result)
-        test_auc_list.append(test_result)
       
-        lr_list.append(optimizer.lr)
-        a_list.append(optimizer.a.item())
-        b_list.append(optimizer.b.item())
-        alpha_list.append(optimizer.alpha.item())
-      
-        df = pd.DataFrame(data={'loss':train_loss_list, 'train_%s_m_%s'%(args.loss, args.margin):train_auc_list, 'val_%s_m_%s'%(args.loss, args.margin) :val_auc_list, 'test_%s_m_%s'%(args.loss, args.margin) :test_auc_list, 'lr':lr_list, 'a_%s'%args.margin:a_list, 'b_%s'%args.margin:b_list, 'alpha_%s'%args.margin:alpha_list})
-        df.to_csv(SAVE_LOG_PATH + '/%s.csv'%(args.configs)  ) 
-
         if train_result > results['highest_train']:
             results['highest_train'] = train_result
 

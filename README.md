@@ -10,7 +10,7 @@ We present our results on the ogbg-molhiv dataset with some strong baselines.
 | Neural FingerPrints| 0.8232±0.0047 | 0.8331±0.0054 | 2,425,102 | Tesla V100 (32GB) |
 | Graphormer         | 0.8051±0.0053 | 0.8310±0.0089 | 47,183,04 | Tesla V100 (16GB) |
 | **DeepAUC (Ours)**           | **0.8159±0.0059** | 0.8054±0.0080 | 1,019,407  | Tesla V100 (32GB) |
-| **DeepAUC+FPs (Ours)**     | **0.8352±0.0054** | 0.8238±0.0061 | 1,019,407  | Tesla V100 (32GB) |
+| **DeepAUC+FPs (Ours)**     | **0.8352±0.0054** | 0.8238±0.0061 | 3,444,509  | Tesla V100 (32GB) |
 
 ## Requirements
 1. Install base packages:

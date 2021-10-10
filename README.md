@@ -33,7 +33,7 @@ We present our results on the ogbg-molhiv dataset with some strong baselines.
 ## Training
 The training process has two steps: 1) we train a DeepGCN model using our **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** from scratch. 2) we jointly finetuning the pretrained model from (1) with FingerPrints models. 
 ### Training from scratch using AUC-margin loss:
-- Train [DeepGCN](https://github.com/lightaime/deep_gcns_torch) model with AUC-Margin loss and PESG optimizer
+- Train [DeepGCN](https://github.com/lightaime/deep_gcns_torch) model with AUC-Margin loss and PESG optimizer by default parameters
 ```
 python main.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
             --dataset ogbg-molhiv \
@@ -54,7 +54,7 @@ python main.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_a
 python extract_fingerprint.py
 python random_forest.py
 ```
-- Finetuning pretrained model with FingerPrints model using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)**
+- Finetuning pretrained model with FingerPrints model using **[AUC-margin loss](https://arxiv.org/abs/2012.03173)** by default parameters
 ```
 python finetune.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --gcn_aggr softmax --t 1.0 --learn_t --dropout 0.2 \
             --dataset ogbg-molhiv \

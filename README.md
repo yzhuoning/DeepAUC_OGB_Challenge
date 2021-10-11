@@ -2,7 +2,7 @@
 This repo contains code submission for OGB challenge. Here, we focus on [**ogbg-molhiv**](https://ogb.stanford.edu/docs/leader_graphprop/), which is a binary classification task to predict target molecular property, e.g, whether a molecule inhibits HIV virus replication or not. The evaluation metric is **AUROC**. To our best knowledge, this is the first solution to directly optimize AUC score in this task. Our [**AUC-Margin loss**](https://arxiv.org/abs/2012.03173) improves baseline (DeepGCN) to **0.8159** and achieves SOTA performance **0.8352** when jointly training with Neural FingerPrints. Our approaches are implemented in **[LibAUC](https://github.com/Optimization-AI/LibAUC)**, which is a ML library for AUC optimization.
 
 ## Results on ogbg-molhiv
-We present our results on the ogbg-molhiv dataset with some strong baselines. 
+**Our method ranks 1st place as of 10/11/2021 on the leaderboard!** We present our results on the ogbg-molhiv dataset with some strong baselines as below:
 
 | Method             |Test AUROC    |Validation AUROC  | Parameters    | Hardware |
 | ------------------ |------------------- | ----------------- | -------------- |----------|
@@ -72,9 +72,10 @@ python finetune.py --use_gpu --conv_encode_edge --num_layers 14 --block res+ --g
 ## Results
 The results (1) improves the original baseline (DeepGCN) to **0.8159**, which is ~**3%** improvement. The result (2) achieves a higher SOTA performance **0.8352**, which is ~**1%** improvement over previous baselines. For each stage, we train model by 10 times using different random seeds, e.g., 0 to 9. 
 
+
 Citation
 ---------
-If you find this work useful, please cite the following paper for our method:
+If you have any questions, please contact @ [Zhuoning Yuan](https://homepage.divms.uiowa.edu/~zhuoning/) [yzhuoning@gmail.com] or open an new issue in this repo. If you find this work useful, please cite the following paper for our method and library: 
 ```
 @inproceedings{yuan2021robust,
 	title={Large-scale Robust Deep AUC Maximization: A New Surrogate Loss and Empirical Studies on Medical Image Classification},

@@ -8,7 +8,7 @@ This repo contains code submission for OGB challenge. Here, we focus on [**ogbg-
 | ------------------ |------------------- | ----------------- | -------------- |----------|
 | DeepGCN            | 0.7858±0.0117 | 0.8427±0.0063 | 531,976   | Tesla V100 (32GB) |
 | Neural FingerPrints| 0.8232±0.0047 | 0.8331±0.0054 | 2,425,102 | Tesla V100 (32GB) |
-| Graphormer         | 0.8051±0.0053 | 0.8310±0.0089 | 47,183,04 | Tesla V100 (16GB) |
+| Graphormer         | 0.8051±0.0053 | 0.8310±0.0089 | 47,183,040 | Tesla V100 (16GB) |
 | **DeepAUC (Ours)**           | **0.8159±0.0059** | 0.8054±0.0080 | 1,019,407  | Tesla V100 (32GB) |
 | **DeepAUC+FPs (Ours)**     | **0.8352±0.0054** | 0.8238±0.0061 | 3,444,509  | Tesla V100 (32GB) |
 

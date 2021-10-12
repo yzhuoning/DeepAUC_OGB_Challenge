@@ -24,6 +24,7 @@ This repo contains code submission for OGB challenge. Here, we focus on [**ogbg-
     numpy==1.20.3
     pandas==1.2.5
     scikit-learn==0.24.2
+    deep_gcns_torch
     ```   
 2. Install [**LibAUC**](https://github.com/Optimization-AI/LibAUC) (using **AUC-Margin** loss and **PESG** optimizer):
     ```bash

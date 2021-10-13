@@ -76,7 +76,7 @@ The results (1) improves the original baseline (DeepGCN) to **0.8159**, which is
 
 Citation
 ---------
-If you have any questions, please contact @ [Zhuoning Yuan](https://homepage.divms.uiowa.edu/~zhuoning/) [yzhuoning@gmail.com] and [Tianbao Yang](https://homepage.cs.uiowa.edu/~tyng/) [tianbao-yang@uiowa.edu] or open an new issue in this repo. If you find this work useful, please cite the following paper for our method and library: 
+If you have any questions, please contact @ [Zhuoning Yuan](https://homepage.divms.uiowa.edu/~zhuoning/) [yzhuoning@gmail.com] or open an new issue in this repo. If you find this work useful, please cite the following paper for our method and library: 
 ```
 @inproceedings{yuan2021robust,
 	title={Large-scale Robust Deep AUC Maximization: A New Surrogate Loss and Empirical Studies on Medical Image Classification},

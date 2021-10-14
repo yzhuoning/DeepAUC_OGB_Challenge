@@ -10,7 +10,9 @@ This repo contains code submission for OGB challenge. Here, we focus on [**ogbg-
 | Neural FingerPrints| 0.8232±0.0047 | 0.8331±0.0054 | 2,425,102 | Tesla V100 (32GB) |
 | Graphormer         | 0.8051±0.0053 | 0.8310±0.0089 | 47,183,040 | Tesla V100 (16GB) |
 | **DeepAUC (Ours)**           | **0.8159±0.0059** | 0.8054±0.0080 | 1,019,407  | Tesla V100 (32GB) |
-| **DeepAUC+FPs (Ours)**     | **0.8352±0.0054** | 0.8238±0.0061 | 3,444,509  | Tesla V100 (32GB) |
+| **DeepAUC+FPs (Ours)**     | **0.8352±0.0054** | 0.8238±0.0061 | 1,019,407**  | Tesla V100 (32GB) |
+
+- Note that ** doesn't count parameters of RF.
 
 ## Requirements
 1. Install base packages:
@@ -76,7 +78,7 @@ The results (1) improves the original baseline (DeepGCN) to **0.8159**, which is
 
 Citation
 ---------
-If you have any questions, please contact @ [Zhuoning Yuan](https://homepage.divms.uiowa.edu/~zhuoning/) [yzhuoning@gmail.com] or open an new issue in this repo. If you find this work useful, please cite the following paper for our method and library: 
+If you have any questions, please contact @ [Zhuoning Yuan](https://homepage.divms.uiowa.edu/~zhuoning/) [yzhuoning@gmail.com] and [Tianbao Yang](https://homepage.cs.uiowa.edu/~tyng/) [tianbao-yang@uiowa.edu] or open an new issue in this repo. If you find this work useful, please cite the following paper for our method and library: 
 ```
 @inproceedings{yuan2021robust,
 	title={Large-scale Robust Deep AUC Maximization: A New Surrogate Loss and Empirical Studies on Medical Image Classification},

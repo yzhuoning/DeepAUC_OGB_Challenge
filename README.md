@@ -12,7 +12,7 @@ This repo contains code submission for OGB challenge. Here, we focus on [**ogbg-
 | **DeepAUC (Ours)**           | **0.8159±0.0059** | 0.8054±0.0080 | 1,019,407  | Tesla V100 (32GB) |
 | **DeepAUC+FPs (Ours)**     | **0.8352±0.0054** | 0.8238±0.0061 | 1,019,407**  | Tesla V100 (32GB) |
 
-- Note that ** doesn't count parameters of RF.
+- Note that this number** doesn't count the parameters of Random Forest model.
 
 ## Requirements
 1. Install base packages:
